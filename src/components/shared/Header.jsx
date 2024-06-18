@@ -8,7 +8,7 @@ import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
 export default function Header() {
   return (
-    <div className="flex justify-between items-center px-2 h-14 border-b  border-slate-100">
+    <div className="flex justify-between items-center p-2 h-14 border-b  border-slate-100">
       <div>
         <h1 className="text-2xl font-medium ">EVENTLY</h1>
       </div>
@@ -16,13 +16,13 @@ export default function Header() {
       <DesktopNav/>
       </div>
        
-       <div className="flex  gap-8 justify-around ">
+       <div className="flex  gap-8 justify-around  items-center">
         <div className="md:mr-4">
         <SignedIn>
           <UserButton afterSignOutUrl="/"/>
         </SignedIn>
         <SignedOut>
-          <Button className="bg-slate-600">
+          <Button className="bg-indigo-400">
             <Link href="/sign-in">Login</Link>
           </Button>
         </SignedOut>
