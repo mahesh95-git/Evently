@@ -58,8 +58,8 @@ export async function POST(req) {
   if (eventType === "user.created") {
     const {
       id,
-      email,
-      email_address,
+
+      email_addresses,
       first_name,
       last_name,
       username,
@@ -67,28 +67,23 @@ export async function POST(req) {
     } = evt.data;
     const user = {
       clerkId: id,
-      email,
-      email_address,
+      email: email_addresses[0].email_address,
       firstName: first_name,
       lastName: last_name,
       username,
       photo: image_url,
     };
     // Add user to database
-    try {
-      const newUser = await createUser(user);
-      if(newUser){
+
+    const newUser = await createUser(user);
+    if (newUser) {
       clerkClient.users.updateUser(id, {
         publicMetadata: {
           userId: newUser._id,
         },
       });
     }
-    } catch (error) {
-      console.log(error);
-    }
-    
-    console.log(newUser);
+
     return NextResponse.json(
       { success: true, user: newUser },
       {
@@ -97,15 +92,8 @@ export async function POST(req) {
     );
   }
   if (eventType === "user.updated") {
-    const {
-      id,
-
-      email_addresses,
-      first_name,
-      last_name,
-      username,
-      image_url,
-    } = evt.data;
+    const { id, email_addresses, first_name, last_name, username, image_url } =
+      evt.data;
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
