@@ -9,14 +9,14 @@ export default function DesktopNav() {
   return (
     <nav>
       <ul className="flex justify-center gap-14 text-[18px]">
-        {navItems.map((value) => (
+        {/* {navItems.map((value) => (
           <li
             key={value.name}
-            className={isActive == value.path && "text-indigo-400"}
+            className={isActive&&isActive == value.path && "text-indigo-400"}
           >
             <Link href={value.path}>{value.name}</Link>
           </li>
-        ))}
+        ))} */}
       </ul>
     </nav>
   );
